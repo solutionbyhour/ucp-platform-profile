@@ -6,6 +6,13 @@ tester for agentic checkout (UCP / ACP) built by SolutionByHour.
 UCP merchants download the profile URI an agent sends in `UCP-Agent` /
 `meta.ucp-agent.profile` to identify the caller and negotiate capabilities.
 
-Profile URL: https://solutionbyhour.github.io/ucp-platform-profile/platform.json
+Use the **jsDelivr** URL for a published version (tags are immutable):
 
-Regenerate with `conform profile > platform.json`.
+    https://cdn.jsdelivr.net/gh/solutionbyhour/ucp-platform-profile@v1/platform.json
+
+jsDelivr serves `application/json` with `Cache-Control: public, …`, which UCP merchants
+require. GitHub Pages sends `max-age` without `public`, and Shopify rejects it
+("Invalid cache control").
+
+Edit and publish new versions from the checkout-conform UI (Platform profile), or
+regenerate with `conform profile [fragment.json] > platform.json`.
